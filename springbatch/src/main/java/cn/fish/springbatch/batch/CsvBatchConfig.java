@@ -1,6 +1,7 @@
 package cn.fish.springbatch.batch;
 
-import cn.fish.springbatch.bean.UserBean;
+import javax.sql.DataSource;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -27,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.sql.DataSource;
+import cn.fish.springbatch.bean.UserBean;
 
 
 /**
@@ -46,7 +47,7 @@ public class CsvBatchConfig {
     public ItemReader<UserBean> reader() throws Exception{
         FlatFileItemReader<UserBean> reader = new FlatFileItemReader<>();
         reader.setName("readCsv");
-        reader.setResource(new ClassPathResource("user.csv"));
+        reader.setResource(new ClassPathResource("person.csv"));
         DefaultLineMapper<UserBean> defaultLineMapper = new DefaultLineMapper<>();
         reader.setLineMapper(defaultLineMapper);
 
